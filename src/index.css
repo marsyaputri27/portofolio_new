@@ -1,0 +1,414 @@
+@import url("https://fonts.googleapis.com/css?family=Inter:300,regular,500,600,700,800,900&display=swap");
+
+* {
+  padding: 0rem;
+  margin: 0rem;
+  border: 0rem;
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #030615;
+  font-family: "Inter", Arial, sans-serif;
+  color: #ffffff;
+  font-size: 1rem;
+  overscroll-behavior: none;
+  overflow: hidden;
+}
+
+/* =========================================
+   1. STYLING UTAMA (REACT APP)
+========================================= */
+.index {
+  width: 100%;
+  height: 100%;
+}
+
+/* Background Cahaya yang di-fixed */
+.stage {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  background: radial-gradient(75rem 50rem at 50% 45%, rgba(51, 199, 255, 0.18), transparent 60%), 
+              radial-gradient(56.25rem 43.75rem at 55% 55%, rgba(0, 120, 255, 0.14), transparent 62%), 
+              linear-gradient(180deg, #030615, #040b1f);
+  overflow: hidden;
+}
+
+.light-rays {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.light-rays canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* =========================================
+   2. STYLING LOADER (AURELA)
+========================================= */
+@font-face {
+  font-family: 'PP Neue Montreal';
+  src: url('https://cdn.prod.website-files.com/6819ed8312518f61b84824df/6819ed8312518f61b84825ba_PPNeueMontreal-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+.willem-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999; 
+  background-color: #f4f4f4;
+  color: #f4f4f4;
+  overflow: hidden;
+  width: 100%;
+  height: 100dvh;
+  font-family: 'PP Neue Montreal', Arial, sans-serif;
+}
+
+.willem-header.is--loading.is--hidden {
+  display: none;
+}
+
+.willem-loader {
+  color: #201d1d;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+}
+
+.willem__h1 {
+  white-space: nowrap;
+  justify-content: center;
+  font-size: 12.5em;
+  font-weight: 500;
+  line-height: .75;
+  display: flex;
+  position: relative;
+}
+
+.willem__h1-start {
+  justify-content: flex-end;
+  width: 1.5256em;
+  display: flex;
+  overflow: hidden;
+}
+
+.willem__h1-end {
+  justify-content: flex-start;
+  width: 1.525em;
+  display: flex;
+  overflow: hidden;
+}
+
+.willem__letter, .willem__letter-white {
+  display: block;
+  position: relative;
+}
+
+.willem__letter-white.is--space {
+  margin-left: .25em;
+}
+
+.willem-loader__box {
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  width: 0;
+  display: flex;
+  position: relative;
+}
+
+.willem-loader__box-inner {
+  justify-content: center;
+  align-items: center;
+  min-width: 1em;
+  height: 95%;
+  display: flex;
+  position: relative;
+}
+
+.willem__growing-image {
+  justify-content: center;
+  align-items: center;
+  width: 0%;
+  height: 100%;
+  display: flex;
+  position: absolute;
+  overflow: hidden;
+}
+
+.willem__growing-image-wrap {
+  width: 100%;
+  min-width: 1em;
+  height: 100%;
+  position: absolute;
+}
+
+.willem__cover-image, .willem__cover-image-extra {
+  pointer-events: none;
+  object-fit: cover;
+  object-position: center 20%;
+  user-select: none;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.willem__cover-image-extra.is--1 { z-index: 3; }
+.willem__cover-image-extra.is--2 { z-index: 2; }
+.willem__cover-image-extra.is--3 { z-index: 1; }
+
+.willem__vignette-overlay {
+  position: absolute;
+  inset: -1px;
+  background: radial-gradient(ellipse at center, transparent 40%, #030615 72%);
+  opacity: 0;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.willem-header__content {
+  flex-flow: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 100dvh;
+  padding: 3em;
+  display: flex;
+  position: relative;
+  box-sizing: border-box;
+  z-index: 50;
+  justify-content: flex-end; 
+  align-items: flex-start; 
+}
+
+.willem-header__bottom {
+  justify-content: flex-start; 
+  align-items: flex-end;
+  width: 100%;
+  display: flex;
+  position: relative;
+  overflow: hidden;
+}
+
+.willen-nav {
+  display: flex;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+
+.willem-nav__link {
+  color: inherit;
+  font-size: 1.3125em;
+  line-height: 1.3;
+  text-decoration: none;
+  position: relative;
+}
+
+.osmo-credits__p {
+  pointer-events: auto;
+  text-align: center;
+  margin: 0;
+  font-size: 1.125em;
+  font-weight: 500;
+  line-height: 1.3;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.willem-header__content .willem-nav__link,
+.willem-header__content .willem__letter-white,
+.willem-header__content .osmo-credits__p {
+  transform: translateY(110%);
+  will-change: transform;
+}
+
+@media screen and (max-width: 991px) {
+  .willem__h1 { font-size: 9em; }
+  .osmo-credits__p { display: none; }
+}
+
+@media screen and (max-width: 767px) {
+  .willem__h1 { font-size: 5.5em; }
+  .willem-header__content { padding: 1.5em; }
+}
+
+/* =========================================
+   3. STYLING 3D SCROLL EXPERIENCE
+========================================= */
+.scroll-container {
+  position: relative;
+  z-index: 10;
+}
+
+h1 {
+  text-transform: uppercase;
+  font-size: 9vw;
+  font-weight: 500;
+  line-height: 0.9;
+  font-family: "Inter", Arial, sans-serif;
+}
+
+.model {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 2;
+  pointer-events: none; 
+}
+
+section.intro, section.archive, section.outro {
+  width: 100vw;
+  min-height: 100vh;
+}
+
+.intro {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1em;
+  margin-top: 10vh;
+}
+
+.header-row {
+  display: flex;
+  gap: 12em;
+  align-items: center;
+}
+
+.header-row p {
+  text-transform: uppercase;
+  width: 20%;
+  font-size: 13px;
+  line-height: 1.4;
+  font-family: "Inter", Arial, sans-serif;
+}
+
+.archive {
+  height: 150vh;
+  display: flex;
+  flex-direction: column;
+  gap: 3em;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.archive h2 {
+  font-size: 4.5vw;
+  font-weight: 400;
+  color: inherit;
+  opacity: 0.8;
+  font-family: "Inter", Arial, sans-serif;
+}
+
+.archive-info {
+  width: 100%;
+  padding: 1em;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.archive-info p {
+  text-transform: uppercase;
+  font-size: 13px;
+  opacity: 0.6;
+  font-family: "Inter", Arial, sans-serif;
+}
+
+.outro {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 6em 2em 2em 2em;
+}
+
+.outro-copy h2 {
+  width: 75%;
+  text-transform: uppercase;
+  font-size: 3.5vw;
+  font-weight: 400;
+  line-height: 1.3;
+  margin-bottom: 0.5em;
+  font-family: "Inter", Arial, sans-serif;
+}
+
+.outro-copy h2 .line {
+  position: relative;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+  overflow: hidden;
+  display: block;
+}
+
+.outro-copy h2 .line span {
+  position: relative;
+  will-change: transform;
+  display: block;
+  transform: translateY(70px);
+}
+
+.outro-copy p {
+  display: flex;
+  margin: 1em 0;
+  gap: 2em;
+  text-transform: uppercase;
+  font-size: 13px;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  text-transform: uppercase;
+  font-size: 13px;
+  opacity: 0.6;
+}
+
+.footer p:nth-child(1) {
+  width: 25%;
+}
+
+/* Lenis Scroll Smooth Requirements */
+html.lenis, html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: clip;
+}
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}

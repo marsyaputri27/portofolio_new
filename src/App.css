@@ -1,0 +1,427 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+/* =========================================
+   STYLING UTAMA HALAMAN APP
+========================================= */
+.index {
+  position: relative;
+  width: 100vw;
+  min-height: 100vh;
+  background: radial-gradient(circle at 50% 10%, rgba(8, 78, 104, 0.25) 0%, rgba(5, 9, 16, 0.4) 50%, #040711 100%),
+              linear-gradient(135deg, #0d1633 0%, #070c1c 50%, #040710 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  overflow-x: hidden;
+  font-family: 'Inter', sans-serif;
+  color: #ffffff;
+}
+
+/* =========================================
+   NAVBAR (SHARED)
+========================================= */
+.portfolio-nav {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2.5rem 5%;
+  z-index: 100;
+  box-sizing: border-box;
+}
+
+.back-arrow {
+  font-size: 2.5rem;
+  color: #fff;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  user-select: none;
+}
+
+.back-arrow:hover {
+  transform: translateX(-5px);
+  color: #33c7ff;
+  text-shadow: 0 0 10px rgba(51, 199, 255, 0.6);
+}
+
+.portfolio-nav .nav-right {
+  display: flex;
+  gap: 3rem;
+}
+
+.portfolio-nav__link {
+  color: rgba(255, 255, 255, 0.7) !important;
+  font-size: 1.1rem;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease !important;
+  text-transform: capitalize;
+}
+
+.portfolio-nav__link:hover {
+  color: #33c7ff !important;
+  text-shadow: 0 0 15px rgba(51, 199, 255, 0.9) !important;
+}
+
+.portfolio-nav__link.active {
+  color: #33c7ff !important;
+  text-shadow: 0 0 15px rgba(51, 199, 255, 0.9) !important;
+  font-weight: 600 !important;
+}
+
+/* =========================================
+   STYLING MODERN TEXT APP (NEW UPDATE)
+========================================= */
+
+/* 1. Efek Glow Tipis pada Judul Intro */
+.scroll-container .intro h1 {
+  position: relative;
+  color: #ffffff;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  text-shadow: 0 4px 15px rgba(51, 199, 255, 0.15); /* Shadow biru modern */
+}
+
+/* 2. Warna Biru Terang & Underline untuk "The Future" */
+.scroll-container .intro .header-row:nth-child(2) h1 {
+  color: #33c7ff !important;
+  text-shadow: 0 0 25px rgba(51, 199, 255, 0.5) !important; /* Glow tajam */
+  text-decoration: underline;
+  text-decoration-color: rgba(51, 199, 255, 0.6);
+  text-decoration-thickness: 3px;
+  text-underline-offset: 8px; /* Jarak garis bawah yang modern */
+}
+
+/* 3. Teks Paragraf Lebih Premium */
+.scroll-container .intro p {
+  color: rgba(255, 255, 255, 0.85) !important;
+  font-weight: 300;
+  line-height: 1.7;
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.6); /* Agar teks kontras & mudah dibaca */
+}
+
+/* 4. Judul Archive Card (Web Development, dll) - Biru + Glow */
+.scroll-container .archive-item h2 {
+  position: relative;
+  color: #33c7ff !important;
+  text-shadow: 0 2px 12px rgba(51, 199, 255, 0.4);
+  display: inline-block;
+  padding-bottom: 8px;
+  margin-bottom: 0.5rem;
+}
+
+/* 5. Animated Underline pada Archive Card */
+.scroll-container .archive-item h2::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 40px; /* Lebar garis awal */
+  height: 3px;
+  background: #33c7ff;
+  box-shadow: 0 0 10px rgba(51, 199, 255, 0.6);
+  transition: width 0.4s ease, background 0.4s ease;
+  border-radius: 2px;
+}
+
+/* Garis memanjang penuh & berubah warna saat card di-hover */
+.archive-item.interactive-card:hover h2::after {
+  width: 100%;
+  background: #ffd043; /* Jadi emas saat disentuh */
+  box-shadow: 0 0 12px rgba(255, 208, 67, 0.8);
+}
+
+/* Style tambahan untuk setengah teks Outro */
+.outro-copy h2 {
+  font-size: clamp(1.8rem, 3vw, 2.8rem);
+  line-height: 1.4;
+}
+
+.text-white-half, 
+.text-white-half .line span {
+  color: #ffffff !important;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.2) !important;
+}
+
+.text-blue-half, 
+.text-blue-half .line span {
+  color: #33c7ff !important;
+  text-shadow: 0 0 15px rgba(51, 199, 255, 0.6) !important;
+  text-decoration: underline; /* Extra underline di text outro */
+  text-decoration-color: rgba(51, 199, 255, 0.3);
+  text-underline-offset: 6px;
+}
+
+/* =========================================
+   KARTU INTERAKTIF ARCHIVE
+========================================= */
+.archive-item.interactive-card {
+  position: relative;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  border-radius: 16px;
+  padding: 1.8rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.archive-item.interactive-card:hover {
+  border-color: rgba(51, 199, 255, 0.45);
+  box-shadow: 0 15px 45px rgba(51, 199, 255, 0.15), inset 0 0 15px rgba(51, 199, 255, 0.05);
+  transform: translateY(-4px);
+  background: rgba(255, 255, 255, 0.035);
+}
+
+.archive-info p,
+.footer p {
+  color: rgba(255, 255, 255, 0.72) !important;
+}
+
+/* =========================================
+   STYLING FOOTER ESTETIK: BENTO GRID (SHARED)
+========================================= */
+.unique-bento-footer {
+  width: 100%;
+  padding: 6rem 5% 3rem 5%;
+  box-sizing: border-box;
+  background: transparent;
+  position: relative;
+  z-index: 30;
+  font-family: 'Inter', sans-serif;
+}
+
+.footer-bento-container {
+  max-width: 1300px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 1.5rem;
+}
+
+.bento-card {
+  position: relative;
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(51, 199, 255, 0.35);
+  backdrop-filter: blur(14px);
+  border-radius: 20px;
+  padding: 2.5rem;
+  box-sizing: border-box;
+  overflow: hidden;
+  animation: permanentGlow 3s ease-in-out infinite;
+}
+
+@keyframes permanentGlow {
+  0%, 100% {
+    border-color: rgba(51, 199, 255, 0.25);
+    box-shadow: 0 0 15px rgba(51, 199, 255, 0.1), inset 0 0 10px rgba(51, 199, 255, 0.03);
+  }
+  50% {
+    border-color: rgba(51, 199, 255, 0.85);
+    box-shadow: 0 0 30px rgba(51, 199, 255, 0.35), inset 0 0 20px rgba(51, 199, 255, 0.1);
+  }
+}
+
+.bento-glow {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(51, 199, 255, 0.12) 0%, transparent 70%);
+  opacity: 1; 
+  pointer-events: none;
+  animation: pulseGlow 4s ease-in-out infinite;
+}
+
+@keyframes pulseGlow {
+  0%, 100% { transform: scale(0.9); opacity: 0.5; }
+  50% { transform: scale(1.1); opacity: 0.9; }
+}
+
+.bento-card:hover {
+  transform: translateY(-5px);
+}
+
+.bento-main {
+  grid-column: 1 / 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.live-status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #33c7ff;
+  background: rgba(51, 199, 255, 0.12);
+  padding: 0.4rem 1rem;
+  border-radius: 50px;
+  width: fit-content;
+  border: 1px solid rgba(51, 199, 255, 0.3);
+  box-shadow: 0 0 12px rgba(51, 199, 255, 0.3);
+}
+
+.pulse-dot {
+  width: 6px;
+  height: 6px;
+  background-color: #33c7ff;
+  border-radius: 50%;
+  box-shadow: 0 0 10px #33c7ff;
+  animation: blinkDot 1.5s infinite;
+}
+
+@keyframes blinkDot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.8); }
+}
+
+.bento-main h3 {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: #fff;
+  margin: 0;
+  letter-spacing: -0.02em;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+.bento-main p {
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.bento-nav-card {
+  grid-column: 2 / 3;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.bento-nav-card h4, 
+.bento-social-card h4 {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: rgba(51, 199, 255, 0.8);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin: 0;
+  text-shadow: 0 0 8px rgba(51, 199, 255, 0.4);
+}
+
+.bento-nav-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.bento-nav-card li {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.bento-nav-card li:hover {
+  color: #33c7ff;
+  text-shadow: 0 0 10px rgba(51, 199, 255, 0.6);
+  transform: translateX(4px);
+}
+
+.bento-social-card {
+  grid-column: 3 / 4;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.social-links-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.social-links-grid a {
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+  width: fit-content;
+}
+
+.social-links-grid a:hover {
+  color: #33c7ff;
+  text-shadow: 0 0 10px rgba(51, 199, 255, 0.6);
+  transform: translateX(4px);
+}
+
+.bento-bottom-card {
+  grid-column: 1 / 4;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 2.5rem;
+  background: rgba(51, 199, 255, 0.02);
+}
+
+.bento-bottom-card p {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+.domain-tag {
+  color: #33c7ff;
+  font-weight: 500;
+  font-size: 0.85rem;
+  background: rgba(51, 199, 255, 0.1);
+  padding: 0.3rem 0.8rem;
+  border-radius: 6px;
+  border: 1px solid rgba(51, 199, 255, 0.3);
+  box-shadow: 0 0 10px rgba(51, 199, 255, 0.2);
+}
+
+@media screen and (max-width: 992px) {
+  .footer-bento-container {
+    grid-template-columns: 1fr 1fr;
+  }
+  .bento-main {
+    grid-column: 1 / 3;
+  }
+  .bento-bottom-card {
+    grid-column: 1 / 3;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .footer-bento-container {
+    grid-template-columns: 1fr;
+  }
+  .bento-main, 
+  .bento-nav-card, 
+  .bento-social-card, 
+  .bento-bottom-card {
+    grid-column: 1 / 2;
+  }
+  .bento-bottom-card {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+}

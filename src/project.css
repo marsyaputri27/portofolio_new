@@ -1,0 +1,296 @@
+/* =========================================
+   STYLING PORTFOLIO PROJECT PAGE (REFINED)
+========================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Tenon:wght@300;400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+.project-page {
+  --color-text: #ffffff; 
+  --color-bg: #030615; 
+  --color-bg-alt: rgba(9, 90, 120, 0.18);
+  --color-link: rgba(51, 199, 255, 0.85); 
+  --color-link-hover: #ffffff;
+
+  color: var(--color-text);
+  background: radial-gradient(circle at 50% 10%, rgba(5, 58, 78, 0.25) 0%, rgba(5, 9, 16, 0.4) 50%, #040711 100%),
+              linear-gradient(135deg, #0d1633 0%, #070c1c 50%, #040710 100%);
+  font-family: "tenon", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  margin: 0;
+  padding-bottom: 10vh;
+  overflow-x: hidden;
+  width: 100%;
+  position: relative;
+}
+
+/* --- NAVBAR STYLING (DISAMAKAN DENGAN ABOUT PAGE) --- */
+.portfolio-nav {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2.5rem 5%;
+  z-index: 100;
+  box-sizing: border-box;
+}
+
+.back-arrow {
+  font-size: 2.5rem;
+  color: #fff;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  user-select: none;
+}
+
+.back-arrow:hover {
+  transform: translateX(-5px);
+  color: #33c7ff;
+  text-shadow: 0 0 10px rgba(51, 199, 255, 0.6);
+}
+
+.portfolio-nav .nav-right {
+  display: flex;
+  gap: 3rem;
+}
+
+.portfolio-nav__link {
+  color: rgba(255, 255, 255, 0.7) !important;
+  font-size: 1.1rem;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease !important;
+  font-family: "Inter", Arial, sans-serif;
+  text-transform: capitalize;
+}
+
+/* Kondisi Hover Navbar: Biru + Shadow */
+.portfolio-nav__link:hover {
+  color: #33c7ff !important;
+  text-shadow: 0 0 15px rgba(51, 199, 255, 0.9) !important;
+}
+
+/* Kondisi Active Navbar (Halaman Project yang aktif) */
+.portfolio-nav__link.active {
+  color: #33c7ff !important;
+  text-shadow: 0 0 15px rgba(51, 199, 255, 0.9) !important;
+  font-weight: 600 !important;
+}
+
+/* ========================================= */
+
+.project-page * {
+  box-sizing: border-box;
+}
+
+.project-page a {
+  text-decoration: none;
+  color: var(--color-link);
+  cursor: pointer;
+}
+
+.project-page a:hover {
+  color: var(--color-link-hover);
+}
+
+/* --- INTRO SECTION (MARGIN TOP DIKURANGI) --- */
+.project-page .intro {
+  height: auto; 
+  min-height: 50vh;
+  text-align: center;
+  place-items: center;
+  display: grid;
+  margin-top: 6vh; 
+  margin-bottom: 15vh;
+}
+
+.project-page .intro__title {
+  place-items: center;
+  margin: 0;
+  line-height: 1;
+  display: grid;
+  margin-top: 5vh; 
+}
+
+.project-page .intro__title-pre {
+  font-weight: 700;
+  font-size: clamp(2rem, 5vw, 3.5rem); 
+  color: #ffffff !important; 
+  letter-spacing: 2px;
+  position: relative;
+}
+
+.project-page .intro__title-pre::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 3px;
+  background-color: #ffd700;
+  margin: 10px auto 0 auto;
+  border-radius: 2px;
+}
+
+.project-page .intro__title-sub {
+  font-size: 1rem; 
+  margin: 1rem 0;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.project-page .intro__info {
+  max-width: 25ch;
+  opacity: .7;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  line-height: 1.4;
+  position: relative;
+  align-self: end;
+  font-size: 0.85rem;
+}
+
+.project-page .intro__info::after {
+  content: "";
+  width: 1px;
+  height: 2rem;
+  background: #ffffff;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+}
+
+/* --- PROJECT CONTAINERS --- */
+.project-page .content-wrap {
+  display: grid;
+  place-items: center;
+  grid-template-areas: 'main';
+  margin-bottom: 15vh; 
+}
+
+.project-page .content {
+  grid-area: main;
+  display: grid;  
+  place-items: center;
+  line-height: 1.2;
+  grid-template-areas: 'content';
+  width: 100%;
+  padding: 0 5vw;
+}
+
+/* --- TITLE STYLING --- */
+.project-page .title-wrap {
+  display: flex;
+  gap: 0.5em;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.project-page .title {
+  line-height: 1;
+  font-size: clamp(1.8rem, 4vw, 3rem); 
+  font-weight: 700;
+  position: relative;
+  z-index: 100;
+  color: #00f3ff !important; 
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-shadow: 0 0 15px rgba(0, 243, 255, 0.35);
+}
+
+.project-page .title-wrap::after {
+  content: "";
+  display: block;
+  width: 40px;
+  height: 2px;
+  background-color: #ffd700;
+  margin: 6px auto 0 auto;
+  border-radius: 2px;
+}
+
+.project-page .title--up {
+  font-style: normal;
+  -webkit-text-stroke: 0px; 
+}
+
+/* --- IMAGE STYLING --- */
+.project-page .content__img {
+  grid-area: img;
+  width: 100%;
+  max-width: 90vw; 
+  height: auto;
+  max-height: 50vh; 
+}
+
+/* --- TEXT STYLING --- */
+.project-page .content__text {
+  grid-area: text;
+  margin: 1rem 0 0 0;
+  opacity: 0.8;
+  font-size: 1.15rem;
+  line-height: 1.6;
+  text-align: center;
+  max-width: 500px;
+  color: rgba(255, 255, 255, 0.75) !important;
+}
+
+/* =========================================
+   DESKTOP LAYOUT (ZIG-ZAG DESIGN)
+========================================= */
+@media screen and (min-width: 53em) {
+  .project-page .content-wrap:not(:last-child) {
+    margin-bottom: 20vmax;
+  }
+
+  .project-page .content__img {
+    max-width: 35vw; 
+    max-height: 60vh;
+  }
+
+  .project-page .content--layout-odd {
+    grid-template-areas:  
+      'title img'
+      'text img';
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    column-gap: 4vw;
+    align-items: center;
+    justify-items: end;
+  }
+
+  .project-page .content--layout-even {
+    grid-template-areas:  
+      'img title'
+      'img text';
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    column-gap: 4vw;
+    align-items: center;
+    justify-items: start;
+  }
+
+  .project-page .content--layout-odd .title-wrap,
+  .project-page .content--layout-odd .content__text {
+    text-align: right;
+    justify-content: flex-end;
+  }
+
+  .project-page .content--layout-even .title-wrap,
+  .project-page .content--layout-even .content__text {
+    text-align: left;
+    justify-content: flex-start;
+  }
+}
+
+/* Responsive Navbar Mobile */
+@media screen and (max-width: 767px) {
+  .portfolio-nav {
+    padding: 1.5rem 5%;
+  }
+  .portfolio-nav .nav-right {
+    gap: 1.5rem;
+  }
+}

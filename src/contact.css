@@ -1,0 +1,323 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+.contact-page {
+  position: relative;
+  width: 100vw;
+  min-height: 100vh;
+  height: auto;
+  background-color: #030615;
+  color: #ffffff;
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+/* --- GRADASI TERPUSAT DI TENGAH --- */
+.central-gradient-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: radial-gradient(circle at 50% 40%, rgba(51, 199, 255, 0.1) 0%, rgba(9, 90, 120, 0.04) 45%, #030615 80%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* --- KANVAS THREE.JS 3D FULLSCREEN --- */
+.three-canvas-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+  pointer-events: auto;
+}
+
+.three-canvas-container canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* --- NAVBAR (PADDING ATAS-BAWAH DIKECILKAN, KANAN-KIRI TETAP 90px) --- */
+.portfolio-nav {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 90px;
+  z-index: 10;
+  box-sizing: border-box;
+}
+
+.back-arrow {
+  font-size: 2.2rem;
+  color: #fff;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  user-select: none;
+}
+
+.back-arrow:hover {
+  transform: translateX(-5px);
+  color: #33c7ff;
+}
+
+.portfolio-nav .nav-right {
+  display: flex;
+  gap: 2.5rem;
+}
+
+.portfolio-nav__link {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  text-transform: capitalize;
+}
+
+.portfolio-nav__link:hover,
+.portfolio-nav__link.active {
+  color: #fff;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
+}
+
+/* --- MAIN CONTAINER (JARAK ATAS-BAWAH DIPADATKAN, KANAN-KIRI 90px) --- */
+.contact-main {
+  position: relative;
+  z-index: 5;
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0.5rem 90px 2.5rem 90px; /* Padding atas dan bawah diperkecil agar lebih rapat secara vertikal */
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  pointer-events: none;
+}
+
+.contact-hero-content,
+.contact-bento-grid,
+.contact-footer-info {
+  pointer-events: auto;
+  width: 100%;
+}
+
+.contact-hero-content {
+  text-align: left;
+  margin-bottom: 1rem; /* Jarak bawah judul dikurangi */
+  max-width: 800px;
+}
+
+.contact-title {
+  font-size: clamp(2.2rem, 4vw, 3rem);
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 0.4rem;
+  color: #ffffff;
+}
+
+.contact-title::after {
+  content: "";
+  display: block;
+  width: 45px;
+  height: 3px;
+  background-color: #ffd043;
+  margin-top: 6px;
+  border-radius: 2px;
+}
+
+.contact-subtitle {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+/* --- TATA LETAK BENTO GRID (JARAK ANTAR KOTAK DIPADATKAN) --- */
+.contact-bento-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 1rem; /* Gap diperkecil agar tidak terlalu renggang ke bawah */
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.bento-card {
+  position: relative;
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(14px);
+  border-radius: 16px;
+  padding: 1.1rem 1.8rem; /* Padding dalam kotak dibuat lebih ramping secara vertikal */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  box-sizing: border-box;
+}
+
+.card-email {
+  grid-column: span 12;
+}
+
+.card-github {
+  grid-column: span 6;
+}
+
+.card-linkedin {
+  grid-column: span 6;
+}
+
+.card-instagram {
+  grid-column: span 12;
+}
+
+.bento-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(51, 199, 255, 0.08), transparent);
+  transition: 0.5s ease;
+}
+
+.bento-card:hover::before {
+  left: 100%;
+}
+
+.bento-card:hover {
+  border-color: rgba(51, 199, 255, 0.5);
+  box-shadow: 0 15px 40px rgba(51, 199, 255, 0.15), inset 0 0 12px rgba(51, 199, 255, 0.05);
+  transform: translateY(-4px) scale(1.006);
+  background: rgba(255, 255, 255, 0.045);
+}
+
+.card-top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.2rem;
+}
+
+.bento-card h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #ffffff;
+  transition: color 0.3s ease;
+}
+
+.bento-card:hover h3 {
+  color: #33c7ff;
+}
+
+.card-badge {
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 0.2rem 0.6rem;
+  background: rgba(51, 199, 255, 0.1);
+  border: 1px solid rgba(51, 199, 255, 0.25);
+  border-radius: 20px;
+  color: #33c7ff;
+}
+
+.card-detail {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.65);
+  line-height: 1.4;
+  margin-bottom: 0.5rem;
+  word-break: break-all;
+}
+
+.card-action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #33c7ff;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: gap 0.3s ease;
+  width: fit-content;
+}
+
+.arrow-icon {
+  transition: transform 0.3s ease;
+}
+
+.bento-card:hover .arrow-icon {
+  transform: translateX(5px);
+}
+
+/* --- FOOTER STATUS --- */
+.contact-footer-info {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 0.2rem;
+}
+
+.status-indicator {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 0.6rem 1.2rem;
+  border-radius: 30px;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.pulsing-dot {
+  width: 8px;
+  height: 8px;
+  background-color: #00ff80;
+  border-radius: 50%;
+  box-shadow: 0 0 8px #00ff80;
+  animation: pulseDot 2s infinite;
+}
+
+@keyframes pulseDot {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 255, 128, 0.7); }
+  70% { transform: scale(1); box-shadow: 0 0 0 5px rgba(0, 255, 128, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 255, 128, 0); }
+}
+
+/* --- RESPONSIF MOBILE --- */
+@media screen and (max-width: 900px) {
+  .portfolio-nav {
+    padding: 1.2rem 5%;
+  }
+  .contact-main {
+    padding: 0.5rem 5% 2.5rem 5%;
+  }
+  .contact-hero-content {
+    text-align: center;
+  }
+  .contact-title::after {
+    margin: 8px auto 0 auto;
+  }
+  .contact-bento-grid {
+    grid-template-columns: 1fr;
+  }
+  .card-email,
+  .card-github,
+  .card-linkedin,
+  .card-instagram {
+    grid-column: span 1;
+  }
+  .contact-footer-info {
+    justify-content: center;
+  }
+}

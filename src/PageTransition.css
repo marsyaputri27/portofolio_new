@@ -1,0 +1,65 @@
+/* Styling Tirai Transisi GSAP */
+.transition-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  z-index: 99999; /* Selalu berada di paling depan di atas elemen apa pun */
+  pointer-events: none;
+}
+
+.transition-row {
+  flex: 1;
+  display: flex;
+}
+
+.transition-row.row-1 .block {
+  transform-origin: top;
+}
+
+.transition-row.row-2 .block {
+  transform-origin: bottom;
+}
+
+.block {
+  flex: 1;
+  background-color: #0a0a0a; /* Warna tirai sesuai demo kamu */
+  transform: scaleY(1);
+  will-change: transform;
+  visibility: visible;
+}
+
+/* PageTransition.css */
+.transition-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 999999; /* Pastikan selalu paling atas */
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.transition-panel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  transform: translateY(100%);
+  will-change: transform;
+}
+
+.transition-panel.layer-1 {
+  background-color: #1e2235; /* Warna aksen abu-abu kebiruan */
+  z-index: 1;
+}
+
+.transition-panel.layer-2 {
+  background-color: #030615; /* Warna background utama Anda */
+  z-index: 2;
+}
