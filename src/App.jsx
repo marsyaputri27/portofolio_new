@@ -4,7 +4,7 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import * as THREE from 'three'
-import Lenis from '@studio-freight/lenis'
+import Lenis from 'lenis'
 import SplitType from 'split-type'
 
 import './app.css' 
