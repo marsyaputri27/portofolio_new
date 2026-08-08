@@ -19,7 +19,7 @@
 }
 
 /* =========================================
-   NAVBAR (SHARED)
+   NAVBAR & CUSTOM MENU BUTTON
 ========================================= */
 .portfolio-nav {
   position: relative;
@@ -28,7 +28,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 2.5rem 5%;
-  z-index: 100;
+  z-index: 99999;
   box-sizing: border-box;
 }
 
@@ -61,367 +61,364 @@
   text-transform: capitalize;
 }
 
-.portfolio-nav__link:hover {
+.portfolio-nav__link:hover, .portfolio-nav__link.active {
   color: #33c7ff !important;
   text-shadow: 0 0 15px rgba(51, 199, 255, 0.9) !important;
 }
+.portfolio-nav__link.active { font-weight: 600 !important; }
 
-.portfolio-nav__link.active {
-  color: #33c7ff !important;
-  text-shadow: 0 0 15px rgba(51, 199, 255, 0.9) !important;
-  font-weight: 600 !important;
+/* TOMBOL KAPSUL (MODERN PILL) */
+.custom-menu-btn {
+  display: none;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  z-index: 100000;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(51, 199, 255, 0.3);
+  padding: 10px 22px;
+  border-radius: 40px;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
-/* =========================================
-   STYLING MODERN TEXT APP (NEW UPDATE)
-========================================= */
-
-/* 1. Efek Glow Tipis pada Judul Intro */
-.scroll-container .intro h1 {
-  position: relative;
-  color: #ffffff;
-  font-weight: 800;
-  letter-spacing: -0.02em;
-  text-shadow: 0 4px 15px rgba(51, 199, 255, 0.15); /* Shadow biru modern */
+.custom-menu-btn:hover, .custom-menu-btn.is-active {
+  background: rgba(51, 199, 255, 0.1);
+  border-color: rgba(51, 199, 255, 0.8);
+  box-shadow: 0 4px 20px rgba(51, 199, 255, 0.3);
 }
 
-/* 2. Warna Biru Terang & Underline untuk "The Future" */
-.scroll-container .intro .header-row:nth-child(2) h1 {
-  color: #33c7ff !important;
-  text-shadow: 0 0 25px rgba(51, 199, 255, 0.5) !important; /* Glow tajam */
-  text-decoration: underline;
-  text-decoration-color: rgba(51, 199, 255, 0.6);
-  text-decoration-thickness: 3px;
-  text-underline-offset: 8px; /* Jarak garis bawah yang modern */
+.menu-text {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.15em;
+  transition: color 0.3s ease;
 }
 
-/* 3. Teks Paragraf Lebih Premium */
-.scroll-container .intro p {
-  color: rgba(255, 255, 255, 0.85) !important;
-  font-weight: 300;
-  line-height: 1.7;
-  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.6); /* Agar teks kontras & mudah dibaca */
+.custom-menu-btn.is-active .menu-text { color: #33c7ff; }
+
+.menu-lines {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: flex-end;
 }
 
-/* 4. Judul Archive Card (Web Development, dll) - Biru + Glow */
-.scroll-container .archive-item h2 {
-  position: relative;
-  color: #33c7ff !important;
-  text-shadow: 0 2px 12px rgba(51, 199, 255, 0.4);
-  display: inline-block;
-  padding-bottom: 8px;
-  margin-bottom: 0.5rem;
-}
-
-/* 5. Animated Underline pada Archive Card */
-.scroll-container .archive-item h2::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 40px; /* Lebar garis awal */
-  height: 3px;
-  background: #33c7ff;
-  box-shadow: 0 0 10px rgba(51, 199, 255, 0.6);
-  transition: width 0.4s ease, background 0.4s ease;
+.menu-lines .line {
+  height: 2px;
+  background-color: #fff;
   border-radius: 2px;
-}
-
-/* Garis memanjang penuh & berubah warna saat card di-hover */
-.archive-item.interactive-card:hover h2::after {
-  width: 100%;
-  background: #ffd043; /* Jadi emas saat disentuh */
-  box-shadow: 0 0 12px rgba(255, 208, 67, 0.8);
-}
-
-/* Style tambahan untuk setengah teks Outro */
-.outro-copy h2 {
-  font-size: clamp(1.8rem, 3vw, 2.8rem);
-  line-height: 1.4;
-}
-
-.text-white-half, 
-.text-white-half .line span {
-  color: #ffffff !important;
-  text-shadow: 0 0 10px rgba(255, 255, 255, 0.2) !important;
-}
-
-.text-blue-half, 
-.text-blue-half .line span {
-  color: #33c7ff !important;
-  text-shadow: 0 0 15px rgba(51, 199, 255, 0.6) !important;
-  text-decoration: underline; /* Extra underline di text outro */
-  text-decoration-color: rgba(51, 199, 255, 0.3);
-  text-underline-offset: 6px;
-}
-
-/* =========================================
-   KARTU INTERAKTIF ARCHIVE
-========================================= */
-.archive-item.interactive-card {
-  position: relative;
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(12px);
-  border-radius: 16px;
-  padding: 1.8rem;
-  margin-bottom: 1.5rem;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.archive-item.interactive-card:hover {
-  border-color: rgba(51, 199, 255, 0.45);
-  box-shadow: 0 15px 45px rgba(51, 199, 255, 0.15), inset 0 0 15px rgba(51, 199, 255, 0.05);
-  transform: translateY(-4px);
-  background: rgba(255, 255, 255, 0.035);
-}
+.line-1 { width: 24px; }
+.line-2 { width: 14px; }
 
-.archive-info p,
-.footer p {
-  color: rgba(255, 255, 255, 0.72) !important;
+.custom-menu-btn:hover .line-2 { width: 24px; background-color: #33c7ff; }
+
+.custom-menu-btn.is-active .line-1 {
+  transform: translateY(4px) rotate(45deg);
+  background-color: #33c7ff;
+}
+.custom-menu-btn.is-active .line-2 {
+  width: 24px;
+  transform: translateY(-4px) rotate(-45deg);
+  background-color: #33c7ff;
 }
 
 /* =========================================
-   STYLING FOOTER ESTETIK: BENTO GRID (SHARED)
+   LAYAR OVERLAY MENU MOBILE
 ========================================= */
-.unique-bento-footer {
-  width: 100%;
-  padding: 6rem 5% 3rem 5%;
-  box-sizing: border-box;
-  background: transparent;
-  position: relative;
-  z-index: 30;
-  font-family: 'Inter', sans-serif;
+.mobile-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #030611; 
+  z-index: 99998;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  clip-path: circle(0% at 90% 10%);
+  opacity: 0;
+  visibility: hidden;
+  transition: clip-path 0.6s cubic-bezier(0.15, 1, 0.15, 1), opacity 0.5s ease;
 }
 
-.footer-bento-container {
-  max-width: 1300px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
-  grid-template-rows: auto auto;
-  gap: 1.5rem;
+.mobile-overlay.is-open {
+  opacity: 1;
+  visibility: visible;
+  clip-path: circle(150% at 90% 10%);
+  transition: clip-path 0.7s cubic-bezier(0.85, 0, 0.15, 1), opacity 0.3s ease;
 }
 
-.bento-card {
-  position: relative;
-  background: rgba(255, 255, 255, 0.025);
-  border: 1px solid rgba(51, 199, 255, 0.35);
-  backdrop-filter: blur(14px);
-  border-radius: 20px;
-  padding: 2.5rem;
-  box-sizing: border-box;
-  overflow: hidden;
-  animation: permanentGlow 3s ease-in-out infinite;
-}
-
-@keyframes permanentGlow {
-  0%, 100% {
-    border-color: rgba(51, 199, 255, 0.25);
-    box-shadow: 0 0 15px rgba(51, 199, 255, 0.1), inset 0 0 10px rgba(51, 199, 255, 0.03);
-  }
-  50% {
-    border-color: rgba(51, 199, 255, 0.85);
-    box-shadow: 0 0 30px rgba(51, 199, 255, 0.35), inset 0 0 20px rgba(51, 199, 255, 0.1);
-  }
-}
-
-.bento-glow {
+.mobile-close-btn {
   position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle, rgba(51, 199, 255, 0.12) 0%, transparent 70%);
-  opacity: 1; 
-  pointer-events: none;
-  animation: pulseGlow 4s ease-in-out infinite;
+  top: 2rem;
+  right: 5%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(51, 199, 255, 0.4);
+  padding: 8px 18px;
+  border-radius: 40px;
+  cursor: pointer;
+  z-index: 100001;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
 }
 
-@keyframes pulseGlow {
-  0%, 100% { transform: scale(0.9); opacity: 0.5; }
-  50% { transform: scale(1.1); opacity: 0.9; }
+.mobile-close-btn:hover {
+  background: rgba(51, 199, 255, 0.15);
+  border-color: #33c7ff;
+  box-shadow: 0 0 15px rgba(51, 199, 255, 0.4);
 }
 
-.bento-card:hover {
-  transform: translateY(-5px);
+.mobile-close-btn span {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: #fff;
 }
 
-.bento-main {
-  grid-column: 1 / 2;
+.mobile-close-btn .close-icon {
+  font-size: 1rem;
+  color: #33c7ff;
+}
+
+.mobile-overlay-content {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  gap: 1.5rem;
+  align-items: center;
+  gap: 2.5rem;
 }
 
-.live-status-badge {
+.mobile-link-wrapper {
+  overflow: hidden;
+  cursor: pointer;
+  padding: 5px 20px;
+}
+
+.mobile-link-text {
+  display: inline-block;
+  font-size: 2.8rem;
+  font-weight: 800;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transform: translateY(120%);
+  transition: transform 0.4s cubic-bezier(0.85, 0, 0.15, 1), color 0.3s ease;
+}
+
+.mobile-overlay.is-open .mobile-link-wrapper:nth-child(1) .mobile-link-text { transition-delay: 0.25s; transform: translateY(0); }
+.mobile-overlay.is-open .mobile-link-wrapper:nth-child(2) .mobile-link-text { transition-delay: 0.35s; transform: translateY(0); }
+.mobile-overlay.is-open .mobile-link-wrapper:nth-child(3) .mobile-link-text { transition-delay: 0.45s; transform: translateY(0); }
+
+.mobile-link-wrapper:nth-child(1) .mobile-link-text { transition-delay: 0.05s; }
+.mobile-link-wrapper:nth-child(2) .mobile-link-text { transition-delay: 0.0s; }
+.mobile-link-wrapper:nth-child(3) .mobile-link-text { transition-delay: 0.0s; }
+
+.mobile-link-wrapper:hover .mobile-link-text, .mobile-link-text.active {
+  color: #33c7ff;
+  text-shadow: 0 0 25px rgba(51, 199, 255, 0.8);
+}
+
+/* =========================================
+   STYLING DESKTOP DEFAULT
+========================================= */
+.header-row { display: flex; align-items: center; }
+
+.title-1 {
+  margin-left: 90px; color: #ffffff; font-weight: 800; letter-spacing: -0.02em; text-shadow: 0 4px 15px rgba(51, 199, 255, 0.15);
+}
+
+.title-2 {
+  margin-left: 85px; color: #33c7ff !important; font-weight: 800; letter-spacing: -0.02em; text-shadow: 0 0 25px rgba(51, 199, 255, 0.5) !important;
+  text-decoration: underline; text-decoration-color: rgba(51, 199, 255, 0.6); text-decoration-thickness: 3px; text-underline-offset: 8px;
+}
+
+.title-3 {
+  margin-left: 80px; margin-bottom: 80px; color: #ffffff; font-weight: 800; letter-spacing: -0.02em; text-shadow: 0 4px 15px rgba(51, 199, 255, 0.15);
+}
+
+.intro-description {
+  color: rgba(255, 255, 255, 0.85) !important; font-weight: 300; line-height: 1.7; text-shadow: 0 2px 5px rgba(0, 0, 0, 0.6);
+  margin-left: 30px; max-width: 600px;
+}
+
+.mobile-model-spacer { display: none; }
+.desktop-ml-90 { margin-left: 90px; }
+
+/* ARCHIVE CARDS */
+.scroll-container .archive-item h2 {
+  position: relative; color: #33c7ff !important; text-shadow: 0 2px 12px rgba(51, 199, 255, 0.4); display: inline-block; padding-bottom: 8px; margin-bottom: 0.5rem;
+}
+
+.scroll-container .archive-item h2::after {
+  content: ""; position: absolute; left: 0; bottom: 0; width: 40px; height: 3px; background: #33c7ff; box-shadow: 0 0 10px rgba(51, 199, 255, 0.6); transition: width 0.4s ease, background 0.4s ease; border-radius: 2px;
+}
+
+.archive-item.interactive-card:hover h2::after {
+  width: 100%; background: #ffd043; box-shadow: 0 0 12px rgba(255, 208, 67, 0.8);
+}
+
+.archive-item.interactive-card {
+  position: relative; background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.08); backdrop-filter: blur(12px); border-radius: 16px; padding: 1.8rem; margin-bottom: 1.5rem; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.archive-item.interactive-card:hover {
+  border-color: rgba(51, 199, 255, 0.45); box-shadow: 0 15px 45px rgba(51, 199, 255, 0.15), inset 0 0 15px rgba(51, 199, 255, 0.05); transform: translateY(-4px); background: rgba(255, 255, 255, 0.035);
+}
+
+.archive-info p, .footer p { color: rgba(255, 255, 255, 0.72) !important; }
+
+/* OUTRO TEXT */
+.outro-copy h2 { font-size: clamp(1.8rem, 3vw, 2.8rem); line-height: 1.4; }
+.text-white-half, .text-white-half .line span { color: #ffffff !important; text-shadow: 0 0 10px rgba(255, 255, 255, 0.2) !important; }
+.text-blue-half, .text-blue-half .line span { color: #33c7ff !important; text-shadow: 0 0 15px rgba(51, 199, 255, 0.6) !important; text-decoration: underline; text-decoration-color: rgba(51, 199, 255, 0.3); text-underline-offset: 6px; }
+
+/* FOOTER ESTETIK */
+.unique-bento-footer { width: 100%; padding: 6rem 5% 3rem 5%; box-sizing: border-box; background: transparent; position: relative; z-index: 30; font-family: 'Inter', sans-serif; }
+.footer-bento-container { max-width: 1300px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 1.5rem; }
+.bento-card { position: relative; background: rgba(255, 255, 255, 0.025); border: 1px solid rgba(51, 199, 255, 0.35); backdrop-filter: blur(14px); border-radius: 20px; padding: 2.5rem; box-sizing: border-box; overflow: hidden; animation: permanentGlow 3s ease-in-out infinite; }
+@keyframes permanentGlow { 0%, 100% { border-color: rgba(51, 199, 255, 0.25); box-shadow: 0 0 15px rgba(51, 199, 255, 0.1), inset 0 0 10px rgba(51, 199, 255, 0.03); } 50% { border-color: rgba(51, 199, 255, 0.85); box-shadow: 0 0 30px rgba(51, 199, 255, 0.35), inset 0 0 20px rgba(51, 199, 255, 0.1); } }
+.bento-glow { position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(51, 199, 255, 0.12) 0%, transparent 70%); opacity: 1; pointer-events: none; animation: pulseGlow 4s ease-in-out infinite; }
+@keyframes pulseGlow { 0%, 100% { transform: scale(0.9); opacity: 0.5; } 50% { transform: scale(1.1); opacity: 0.9; } }
+.bento-card:hover { transform: translateY(-5px); }
+.bento-main { grid-column: 1 / 2; display: flex; flex-direction: column; justify-content: space-between; gap: 1.5rem; }
+.live-status-badge { display: inline-flex; align-items: center; gap: 0.6rem; font-size: 0.8rem; font-weight: 500; color: #33c7ff; background: rgba(51, 199, 255, 0.12); padding: 0.4rem 1rem; border-radius: 50px; width: fit-content; border: 1px solid rgba(51, 199, 255, 0.3); box-shadow: 0 0 12px rgba(51, 199, 255, 0.3); }
+.pulse-dot { width: 6px; height: 6px; background-color: #33c7ff; border-radius: 50%; box-shadow: 0 0 10px #33c7ff; animation: blinkDot 1.5s infinite; }
+@keyframes blinkDot { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(0.8); } }
+.bento-main h3 { font-size: 2.2rem; font-weight: 800; color: #fff; margin: 0; text-shadow: 0 0 10px rgba(255, 255, 255, 0.2); }
+.bento-main p { color: rgba(255, 255, 255, 0.65); font-size: 0.95rem; line-height: 1.6; margin: 0; }
+.bento-nav-card { grid-column: 2 / 3; display: flex; flex-direction: column; gap: 1.2rem; }
+.bento-nav-card h4, .bento-social-card h4 { font-size: 0.85rem; font-weight: 600; color: rgba(51, 199, 255, 0.8); text-transform: uppercase; margin: 0; }
+.bento-nav-card ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.8rem; }
+.bento-nav-card li { color: rgba(255, 255, 255, 0.8); font-size: 0.95rem; cursor: pointer; transition: all 0.2s ease; }
+.bento-nav-card li:hover { color: #33c7ff; transform: translateX(4px); }
+.bento-social-card { grid-column: 3 / 4; display: flex; flex-direction: column; gap: 1.2rem; }
+.social-links-grid { display: flex; flex-direction: column; gap: 0.8rem; }
+.social-links-grid a { color: rgba(255, 255, 255, 0.8); text-decoration: none; transition: all 0.2s ease; }
+.social-links-grid a:hover { color: #33c7ff; transform: translateX(4px); }
+.bento-bottom-card { grid-column: 1 / 4; display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 2.5rem; background: rgba(51, 199, 255, 0.02); }
+.bento-bottom-card p { color: rgba(255, 255, 255, 0.6); font-size: 0.85rem; margin: 0; }
+
+/* STYLE KHUSUS EMAIL INTERAKTIF (TIDAK MUNCUL DI AWAL) */
+.email-copy-wrapper {
+  position: relative;
   display: inline-flex;
   align-items: center;
-  gap: 0.6rem;
-  font-size: 0.8rem;
-  font-weight: 500;
-  color: #33c7ff;
-  background: rgba(51, 199, 255, 0.12);
-  padding: 0.4rem 1rem;
-  border-radius: 50px;
-  width: fit-content;
-  border: 1px solid rgba(51, 199, 255, 0.3);
-  box-shadow: 0 0 12px rgba(51, 199, 255, 0.3);
-}
-
-.pulse-dot {
-  width: 6px;
-  height: 6px;
-  background-color: #33c7ff;
-  border-radius: 50%;
-  box-shadow: 0 0 10px #33c7ff;
-  animation: blinkDot 1.5s infinite;
-}
-
-@keyframes blinkDot {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.4; transform: scale(0.8); }
-}
-
-.bento-main h3 {
-  font-size: 2.2rem;
-  font-weight: 800;
-  color: #fff;
-  margin: 0;
-  letter-spacing: -0.02em;
-  text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
-}
-
-.bento-main p {
-  color: rgba(255, 255, 255, 0.65);
-  font-size: 0.95rem;
-  line-height: 1.6;
-  margin: 0;
-}
-
-.bento-nav-card {
-  grid-column: 2 / 3;
-  display: flex;
-  flex-direction: column;
-  gap: 1.2rem;
-}
-
-.bento-nav-card h4, 
-.bento-social-card h4 {
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: rgba(51, 199, 255, 0.8);
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  margin: 0;
-  text-shadow: 0 0 8px rgba(51, 199, 255, 0.4);
-}
-
-.bento-nav-card ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0.8rem;
-}
-
-.bento-nav-card li {
-  color: rgba(255, 255, 255, 0.8);
-  font-size: 0.95rem;
+  gap: 10px;
   cursor: pointer;
-  transition: all 0.2s ease;
-  display: flex;
-  align-items: center;
-  gap: 0.8rem;
-}
-
-.bento-nav-card li:hover {
-  color: #33c7ff;
-  text-shadow: 0 0 10px rgba(51, 199, 255, 0.6);
-  transform: translateX(4px);
-}
-
-.bento-social-card {
-  grid-column: 3 / 4;
-  display: flex;
-  flex-direction: column;
-  gap: 1.2rem;
-}
-
-.social-links-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 0.8rem;
-}
-
-.social-links-grid a {
-  color: rgba(255, 255, 255, 0.8);
-  text-decoration: none;
-  font-size: 0.95rem;
-  transition: all 0.2s ease;
   width: fit-content;
 }
 
-.social-links-grid a:hover {
+.email-copy-wrapper .email-text {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+}
+
+.email-copy-wrapper:hover .email-text {
   color: #33c7ff;
-  text-shadow: 0 0 10px rgba(51, 199, 255, 0.6);
   transform: translateX(4px);
 }
 
-.bento-bottom-card {
-  grid-column: 1 / 4;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1.5rem 2.5rem;
-  background: rgba(51, 199, 255, 0.02);
+.copy-feedback {
+  font-size: 0.75rem;
+  color: rgba(51, 199, 255, 0.6);
+  background: rgba(51, 199, 255, 0.05);
+  padding: 2px 6px;
+  border-radius: 4px;
+  border: 1px solid rgba(51, 199, 255, 0.2);
+  opacity: 0.5;
+  transition: all 0.3s ease;
+  white-space: nowrap;
 }
 
-.bento-bottom-card p {
-  color: rgba(255, 255, 255, 0.6);
-  font-size: 0.85rem;
-  margin: 0;
+.email-copy-wrapper:hover .copy-feedback {
+  opacity: 1;
+  border-color: rgba(51, 199, 255, 0.5);
 }
 
-.domain-tag {
-  color: #33c7ff;
-  font-weight: 500;
-  font-size: 0.85rem;
-  background: rgba(51, 199, 255, 0.1);
-  padding: 0.3rem 0.8rem;
-  border-radius: 6px;
-  border: 1px solid rgba(51, 199, 255, 0.3);
-  box-shadow: 0 0 10px rgba(51, 199, 255, 0.2);
+.copy-feedback.show {
+  background: #33c7ff;
+  color: #030611;
+  font-weight: 600;
+  opacity: 1;
 }
+
+/* =========================================
+   MEDIA QUERIES (RESPONSIF MOBILE)
+========================================= */
 
 @media screen and (max-width: 992px) {
-  .footer-bento-container {
-    grid-template-columns: 1fr 1fr;
-  }
-  .bento-main {
-    grid-column: 1 / 3;
-  }
-  .bento-bottom-card {
-    grid-column: 1 / 3;
-  }
+  .footer-bento-container { grid-template-columns: 1fr 1fr; }
+  .bento-main, .bento-bottom-card { grid-column: 1 / 3; }
 }
 
 @media screen and (max-width: 768px) {
-  .footer-bento-container {
-    grid-template-columns: 1fr;
+  .desktop-only { display: none !important; }
+  .custom-menu-btn { display: flex !important; }
+
+  .portfolio-nav { 
+    padding: 20px 5% 0px 5% !important;
   }
-  .bento-main, 
-  .bento-nav-card, 
-  .bento-social-card, 
-  .bento-bottom-card {
-    grid-column: 1 / 2;
+
+  .intro {
+    padding-top: 0px !important; 
+    margin-top: 0px !important;
+    position: relative;
+    z-index: 10;
   }
-  .bento-bottom-card {
-    flex-direction: column;
-    gap: 1rem;
-    text-align: center;
+  
+  .title-1, .title-2, .title-3 {
+    margin-left: 5% !important;
+    font-size: clamp(2.7rem, 11vw, 3.8rem) !important; 
+    line-height: 0.8 !important;
   }
+
+  .title-1 { margin-top: 0 !important; }
+
+  .mobile-model-spacer {
+    display: none !important;
+  }
+
+  .description-row { margin-top: 0 !important; }
+
+  .intro-description {
+    margin-left: 5% !important;
+    margin-right: 5% !important;
+    max-width: 90% !important;
+    text-align: left;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.85);
+    margin-bottom: 10px !important;
+  }
+
+  .title-3 { 
+    margin-bottom: 0px !important;
+    margin-top: 0 !important; 
+  }
+
+  /* OUTRO & ARCHIVE */
+  .desktop-ml-90 {
+    margin-left: 5% !important;
+    margin-right: 5% !important;
+  }
+  .outro-copy h2 { font-size: clamp(1.5rem, 6vw, 2.5rem); }
+
+  .archive { padding: 0 5%; }
+  .archive-info { display: flex; flex-wrap: wrap; gap: 0.5rem 1rem; }
+
+  /* FOOTER */
+  .footer-bento-container { grid-template-columns: 1fr; }
+  .bento-main, .bento-nav-card, .bento-social-card, .bento-bottom-card { grid-column: 1 / 2; }
+  .bento-bottom-card { flex-direction: column; gap: 1rem; text-align: center; }
 }

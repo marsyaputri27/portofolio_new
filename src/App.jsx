@@ -23,11 +23,17 @@ function App() {
   const location = useLocation()
   
   const [showLoader, setShowLoader] = useState(true)
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [copied, setCopied] = useState(false)
 
-  // ==========================================
-  // FUNGSI TRANSISI NAVIGASI (SWIPE & BLOCKS)
-  // ==========================================
+  const handleCopyEmail = () => {
+    navigator.clipboard.writeText('marsyaputri086@gmail.com');
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000); // Reset notifikasi setelah 2 detik
+  }
+
   const handleNavigate = (path) => {
+    setIsMenuOpen(false);
     if (path === '/project') {
       gsap.fromTo('.swipe-transition', 
         { yPercent: 100 }, 
@@ -61,9 +67,6 @@ function App() {
     }
   }
 
-  // ========================================
-  // ANIMASI GSAP LOADER
-  // ========================================
   useEffect(() => {
     if (!loaderRef.current) return;
     const ctx = gsap.context(() => {
@@ -101,7 +104,13 @@ function App() {
         tl.to(growingImage, { width: "100vw", height: "100dvh", backgroundColor: "#030615", duration: 2 }, "< 1.25");
         const growingWrap = gsap.utils.toArray(".willem__growing-image-wrap");
         if (growingWrap.length) {
-          tl.to(growingWrap, { width: "30vw", height: "70vh", top: "15vh", left: "35vw", borderRadius: "0px", duration: 2 }, "<");
+          const isMobile = window.innerWidth <= 768;
+          const targetWidth = isMobile ? "75vw" : "30vw";
+          const targetHeight = isMobile ? "50vh" : "70vh";
+          const targetLeft = isMobile ? "12.5vw" : "35vw";
+          const targetTop = isMobile ? "25vh" : "15vh";
+
+          tl.to(growingWrap, { width: targetWidth, height: targetHeight, top: targetTop, left: targetLeft, borderRadius: "0px", duration: 2 }, "<");
           tl.to(".willem__vignette-overlay", { opacity: 1, duration: 2 }, "<");
         }
       }
@@ -112,9 +121,6 @@ function App() {
     return () => ctx.revert(); 
   }, []);
 
-  // ========================================
-  // ANIMASI 3D SCROLL EXPERIENCE
-  // ========================================
   useEffect(() => {
     const lenis = new Lenis();
     lenis.on("scroll", ScrollTrigger.update);
@@ -167,7 +173,10 @@ function App() {
       modelObj.scale.set(0, 0, 0);
       modelObj.rotation.set(0, 0.5, 0);
       
-      gsap.to(modelObj.scale, { x: 1.8, y: 1.8, z: 1.8, duration: 1.5, ease: "power2.out", delay: 1 });
+      const isMobile = window.innerWidth <= 768;
+      const targetScale = isMobile ? 0.55 : 1.8;
+      
+      gsap.to(modelObj.scale, { x: targetScale, y: targetScale, z: targetScale, duration: 1.5, ease: "power2.out", delay: 1 });
     });
 
     let currentScroll = 0;
@@ -179,7 +188,11 @@ function App() {
 
     const animateThree = () => {
       if (modelObj) {
-        modelObj.position.y = Math.sin(Date.now() * 0.001 * floatSpeed) * floatAmplitude;
+        const isMobile = window.innerWidth <= 768;
+        const yOffset = isMobile ? -0.4 : 0;
+        
+        modelObj.position.y = yOffset + (Math.sin(Date.now() * 0.001 * floatSpeed) * floatAmplitude);
+        
         const totalScrollHeight = document.documentElement.scrollHeight - window.innerHeight;
         const scrollProgress = totalScrollHeight > 0 ? Math.min(currentScroll / totalScrollHeight, 1) : 0;
         const baseTilt = 0.5;
@@ -223,10 +236,8 @@ function App() {
 
   return (
     <div className="index" ref={appRef}>
-      {/* ---------------- LAYER ANIMASI SWIPE PUTIH ---------------- */}
       <div className="swipe-transition"></div>
 
-      {/* ---------------- LOADER OVERLAY ---------------- */}
       {showLoader && (
         <section ref={loaderRef} className="willem-header is--loading is--hidden">
           <div className="willem-loader">
@@ -272,12 +283,39 @@ function App() {
         </section>
       )}
 
-      {/* ---------------- NAVBAR ---------------- */}
+      <div className={`mobile-overlay ${isMenuOpen ? 'is-open' : ''}`}>
+        <div className="mobile-close-btn" onClick={() => setIsMenuOpen(false)}>
+          <span>CLOSE</span>
+          <span className="close-icon">✕</span>
+        </div>
+
+        <div className="mobile-overlay-content">
+          <div className="mobile-link-wrapper" onClick={() => handleNavigate('/about')}>
+            <span className={`mobile-link-text ${location.pathname === '/about' ? 'active' : ''}`}>About</span>
+          </div>
+          <div className="mobile-link-wrapper" onClick={() => handleNavigate('/project')}>
+            <span className={`mobile-link-text ${location.pathname === '/project' ? 'active' : ''}`}>Project</span>
+          </div>
+          <div className="mobile-link-wrapper" onClick={() => handleNavigate('/contact')}>
+            <span className={`mobile-link-text ${location.pathname === '/contact' ? 'active' : ''}`}>Contact</span>
+          </div>
+        </div>
+      </div>
+
       <nav className="portfolio-nav">
         <div className="nav-left" onClick={() => handleNavigate('/')} style={{ cursor: 'pointer' }}>
           <span className="back-arrow">←</span>
         </div>
-        <div className="nav-right">
+
+        <div className={`custom-menu-btn ${isMenuOpen ? 'is-active' : ''}`} onClick={() => setIsMenuOpen(!isMenuOpen)}>
+          <span className="menu-text">{isMenuOpen ? 'CLOSE' : 'MENU'}</span>
+          <div className="menu-lines">
+            <span className="line line-1"></span>
+            <span className="line line-2"></span>
+          </div>
+        </div>
+
+        <div className="nav-right desktop-only">
           <span className={`portfolio-nav__link ${location.pathname === '/about' ? 'active' : ''}`} onClick={() => handleNavigate('/about')}>About</span>
           <span className={`portfolio-nav__link ${location.pathname === '/project' ? 'active' : ''}`} onClick={() => handleNavigate('/project')}>Project</span>
           <span className={`portfolio-nav__link ${location.pathname === '/contact' ? 'active' : ''}`} onClick={() => handleNavigate('/contact')}>Contact</span>
@@ -287,34 +325,19 @@ function App() {
       <div className="stage"></div>
       <div className="model" ref={threeModelRef}></div>
 
-      {/* Kontainer utama */}
       <div className="app-wrapper">
         <div className="scroll-container">
           <section className="intro">
             <div className="header-row">
-              <h1 style={{ marginLeft: '90px', color: '#ffffff', textShadow: '0 4px 15px rgba(51, 199, 255, 0.15)' }}>Code for</h1>
+              <h1 className="title-1">Code for</h1>
             </div>
             <div className="header-row">
-              {/* Teks "The Future" diberi warna biru terang, efek glow, dan underline modern */}
-              <h1 style={{ 
-                marginLeft: '85px', 
-                color: '#33c7ff', 
-                textShadow: '0 0 25px rgba(51, 199, 255, 0.6)', 
-                textDecoration: 'underline', 
-                textDecorationColor: 'rgba(51, 199, 255, 0.7)', 
-                textDecorationThickness: '3px', 
-                textUnderlineOffset: '8px' 
-              }}>
-                The Future
-              </h1>
-              <p>
-                An active informatics student and passionate software developer. 
-                Crafting scalable systems, interactive websites, and intuitive mobile apps 
-                for modern clients.
-              </p>
+              <h1 className="title-2">The Future</h1>
             </div>
+
+            <div className="mobile-model-spacer"></div>
             <div className="header-row">
-              <h1 style={{ marginLeft: '80px', marginBottom: '80px', color: '#ffffff', textShadow: '0 4px 15px rgba(51, 199, 255, 0.15)' }}>Starts Here</h1>
+              <h1 className="title-3">Starts Here</h1>
             </div>
           </section>
 
@@ -352,7 +375,7 @@ function App() {
           </section>
 
           <section className="outro">
-            <div className="outro-copy" style={{ marginLeft: '90px' }}>
+            <div className="outro-copy desktop-ml-90">
               <h2 className="text-white-half" style={{ marginBottom: "0.2em" }}>
                 I am an active student and freelance developer specializing in functional software solutions,
               </h2>
@@ -362,13 +385,8 @@ function App() {
             </div>
           </section>
 
-          {/* =========================================
-              FOOTER ESTETIK: BENTO GRID & UNIQUE GLOW
-          ========================================= */}
           <footer className="unique-bento-footer">
             <div className="footer-bento-container">
-              
-              {/* KARTU 1: BRAND & STATUS (BESAR) */}
               <div className="bento-card bento-main">
                 <div className="bento-glow"></div>
                 <div className="live-status-badge">
@@ -378,7 +396,6 @@ function App() {
                 <p>Informatics Student & Software Developer crafting clean code and immersive digital experiences from Bali, Indonesia.</p>
               </div>
 
-              {/* KARTU 2: QUICK NAVIGATION */}
               <div className="bento-card bento-nav-card">
                 <div className="bento-glow"></div>
                 <h4>Explore</h4>
@@ -389,25 +406,28 @@ function App() {
                 </ul>
               </div>
 
-              {/* KARTU 3: SOCIAL CONNECTIONS */}
               <div className="bento-card bento-social-card">
                 <div className="bento-glow"></div>
                 <h4>Connect</h4>
                 <div className="social-links-grid">
-                  <a href="https://github.com/marsyaputri08" target="_blank" rel="noreferrer">GitHub ↗</a>
+                  <a href="https://github.com/marsyaputri27?tab=repositories" target="_blank" rel="noreferrer">GitHub ↗</a>
                   <a href="https://www.linkedin.com/in/marsya-putri08" target="_blank" rel="noreferrer">LinkedIn ↗</a>
-                  <a href="mailto:marsyaputri086@gmail.com">Email ↗</a>
+                  
+                  {/* Email hanya menampilkan teks "Email ↗", teks aslinya disembunyikan sampai diklik */}
+                  <div className="email-copy-wrapper" onClick={handleCopyEmail} title="Click to copy email">
+                    <span className="email-text">Email ↗</span>
+                    <span className={`copy-feedback ${copied ? 'show' : ''}`}>
+                      {copied ? 'Copied! ✓' : 'Click to copy'}
+                    </span>
+                  </div>
                 </div>
               </div>
 
-              {/* KARTU 4: COPYRIGHT & DOMAIN (FULL WIDTH BAWAH) */}
               <div className="bento-card bento-bottom-card">
                 <p>© {new Date().getFullYear()} Marsya Putri. With love and cup of coffee.</p>
               </div>
-
             </div>
           </footer>
-
         </div>
       </div>
     </div>

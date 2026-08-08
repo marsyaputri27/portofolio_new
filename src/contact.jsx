@@ -1,5 +1,5 @@
-import React, { useEffect, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useRef, useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Lenis from "lenis";
@@ -12,11 +12,14 @@ const Contact = () => {
   const pageRef = useRef(null);
   const canvasContainerRef = useRef(null);
   const navigate = useNavigate();
+  const location = useLocation();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   // ==========================================
   // FUNGSI TRANSISI NAVIGASI (SWIPE KELUAR)
   // ==========================================
   const handleNavigate = (path) => {
+    setIsMenuOpen(false);
     gsap.fromTo('.swipe-transition', 
       { yPercent: 100 }, 
       { 
@@ -273,20 +276,49 @@ const Contact = () => {
       <div className="central-gradient-bg"></div>
       <div className="three-canvas-container" ref={canvasContainerRef}></div>
 
+      {/* MOBILE MENU OVERLAY */}
+      <div className={`mobile-overlay ${isMenuOpen ? 'is-open' : ''}`}>
+        <div className="mobile-close-btn" onClick={() => setIsMenuOpen(false)}>
+          <span>CLOSE</span>
+          <span className="close-icon">✕</span>
+        </div>
+
+        <div className="mobile-overlay-content">
+          <div className="mobile-link-wrapper" onClick={() => handleNavigate('/about')}>
+            <span className={`mobile-link-text ${location.pathname === '/about' ? 'active' : ''}`}>About</span>
+          </div>
+          <div className="mobile-link-wrapper" onClick={() => handleNavigate('/project')}>
+            <span className={`mobile-link-text ${location.pathname === '/project' ? 'active' : ''}`}>Project</span>
+          </div>
+          <div className="mobile-link-wrapper" onClick={() => handleNavigate('/contact')}>
+            <span className={`mobile-link-text ${location.pathname === '/contact' ? 'active' : ''}`}>Contact</span>
+          </div>
+        </div>
+      </div>
+
       {/* Navbar */}
       <nav className="portfolio-nav">
         <div className="nav-left" onClick={() => handleNavigate('/')} style={{ cursor: 'pointer' }}>
           <span className="back-arrow">←</span>
         </div>
-        <div className="nav-right">
-          <span className="portfolio-nav__link" onClick={() => handleNavigate('/about')}>About</span>
-          <span className="portfolio-nav__link" onClick={() => handleNavigate('/project')}>Project</span>
-          <span className="portfolio-nav__link active" onClick={() => handleNavigate('/contact')}>Contact</span>
+
+        <div className={`custom-menu-btn ${isMenuOpen ? 'is-active' : ''}`} onClick={() => setIsMenuOpen(!isMenuOpen)}>
+          <span className="menu-text">{isMenuOpen ? 'CLOSE' : 'MENU'}</span>
+          <div className="menu-lines">
+            <span className="line line-1"></span>
+            <span className="line line-2"></span>
+          </div>
+        </div>
+
+        <div className="nav-right desktop-only">
+          <span className={`portfolio-nav__link ${location.pathname === '/about' ? 'active' : ''}`} onClick={() => handleNavigate('/about')}>About</span>
+          <span className={`portfolio-nav__link ${location.pathname === '/project' ? 'active' : ''}`} onClick={() => handleNavigate('/project')}>Project</span>
+          <span className={`portfolio-nav__link ${location.pathname === '/contact' ? 'active' : ''}`} onClick={() => handleNavigate('/contact')}>Contact</span>
         </div>
       </nav>
 
       {/* Main Container */}
-      <main className="contact-main"style={{ marginTop: '60px' }}>
+      <main className="contact-main" style={{ marginTop: '60px' }}>
         <div className="contact-hero-content">
           <h1 className="contact-title">Let's Connect</h1>
           <p className="contact-subtitle">Available for freelance work, web development, and collaborations.</p>
@@ -312,7 +344,7 @@ const Contact = () => {
               <span className="card-badge">Code</span>
             </div>
             <p className="card-detail">Explore repositories & open-source work.</p>
-            <a href="https://github.com/marsyaputri08" target="_blank" rel="noreferrer" className="card-action-btn">
+            <a href="https://github.com/marsyaputri27?tab=repositories" target="_blank" rel="noreferrer" className="card-action-btn">
               <span>View GitHub</span> <span className="arrow-icon">→</span>
             </a>
           </div>

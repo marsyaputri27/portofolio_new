@@ -1,7 +1,3 @@
-/* =========================================
-   STYLING PORTFOLIO PROJECT PAGE (REFINED)
-========================================= */
-
 @import url('https://fonts.googleapis.com/css2?family=Tenon:wght@300;400;500;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
@@ -25,7 +21,7 @@
   position: relative;
 }
 
-/* --- NAVBAR STYLING (DISAMAKAN DENGAN ABOUT PAGE) --- */
+/* --- NAVBAR STYLING --- */
 .portfolio-nav {
   position: absolute;
   top: 0;
@@ -69,52 +65,189 @@
   text-transform: capitalize;
 }
 
-/* Kondisi Hover Navbar: Biru + Shadow */
 .portfolio-nav__link:hover {
   color: #33c7ff !important;
   text-shadow: 0 0 15px rgba(51, 199, 255, 0.9) !important;
 }
 
-/* Kondisi Active Navbar (Halaman Project yang aktif) */
 .portfolio-nav__link.active {
   color: #33c7ff !important;
   text-shadow: 0 0 15px rgba(51, 199, 255, 0.9) !important;
   font-weight: 600 !important;
 }
 
-/* ========================================= */
-
-.project-page * {
-  box-sizing: border-box;
-}
-
-.project-page a {
-  text-decoration: none;
-  color: var(--color-link);
+/* TOMBOL KAPSUL (MODERN PILL) UNTUK HP */
+.custom-menu-btn {
+  display: none;
+  align-items: center;
+  gap: 12px;
   cursor: pointer;
+  z-index: 100000;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(51, 199, 255, 0.3);
+  padding: 8px 18px;
+  border-radius: 40px;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
-.project-page a:hover {
-  color: var(--color-link-hover);
+.custom-menu-btn:hover, .custom-menu-btn.is-active {
+  background: rgba(51, 199, 255, 0.1);
+  border-color: rgba(51, 199, 255, 0.8);
+  box-shadow: 0 4px 20px rgba(51, 199, 255, 0.3);
 }
 
-/* --- INTRO SECTION (MARGIN TOP DIKURANGI) --- */
+.menu-text {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.15em;
+  transition: color 0.3s ease;
+}
+
+.custom-menu-btn.is-active .menu-text { color: #33c7ff; }
+
+.menu-lines {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  align-items: flex-end;
+}
+
+.menu-lines .line {
+  height: 2px;
+  background-color: #fff;
+  border-radius: 2px;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.line-1 { width: 22px; }
+.line-2 { width: 12px; }
+
+.custom-menu-btn:hover .line-2 { width: 22px; background-color: #33c7ff; }
+
+.custom-menu-btn.is-active .line-1 {
+  transform: translateY(3px) rotate(45deg);
+  background-color: #33c7ff;
+}
+.custom-menu-btn.is-active .line-2 {
+  width: 22px;
+  transform: translateY(-3px) rotate(-45deg);
+  background-color: #33c7ff;
+}
+
+/* --- LAYAR OVERLAY MENU MOBILE --- */
+.mobile-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #030611; 
+  z-index: 99998;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  clip-path: circle(0% at 90% 10%);
+  opacity: 0;
+  visibility: hidden;
+  transition: clip-path 0.6s cubic-bezier(0.15, 1, 0.15, 1), opacity 0.5s ease;
+}
+
+.mobile-overlay.is-open {
+  opacity: 1;
+  visibility: visible;
+  clip-path: circle(150% at 90% 10%);
+  transition: clip-path 0.7s cubic-bezier(0.85, 0, 0.15, 1), opacity 0.3s ease;
+}
+
+.mobile-close-btn {
+  position: absolute;
+  top: 1.5rem;
+  right: 5%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(51, 199, 255, 0.4);
+  padding: 8px 18px;
+  border-radius: 40px;
+  cursor: pointer;
+  z-index: 100001;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.mobile-close-btn:hover {
+  background: rgba(51, 199, 255, 0.15);
+  border-color: #33c7ff;
+  box-shadow: 0 0 15px rgba(51, 199, 255, 0.4);
+}
+
+.mobile-close-btn span {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: #fff;
+}
+
+.mobile-close-btn .close-icon {
+  font-size: 1rem;
+  color: #33c7ff;
+}
+
+.mobile-overlay-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.mobile-link-wrapper {
+  overflow: hidden;
+  cursor: pointer;
+  padding: 5px 20px;
+}
+
+.mobile-link-text {
+  display: inline-block;
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transform: translateY(120%);
+  transition: transform 0.4s cubic-bezier(0.85, 0, 0.15, 1), color 0.3s ease;
+}
+
+.mobile-overlay.is-open .mobile-link-wrapper:nth-child(1) .mobile-link-text { transition-delay: 0.25s; transform: translateY(0); }
+.mobile-overlay.is-open .mobile-link-wrapper:nth-child(2) .mobile-link-text { transition-delay: 0.35s; transform: translateY(0); }
+.mobile-overlay.is-open .mobile-link-wrapper:nth-child(3) .mobile-link-text { transition-delay: 0.45s; transform: translateY(0); }
+
+.mobile-link-wrapper:hover .mobile-link-text, .mobile-link-text.active {
+  color: #33c7ff;
+  text-shadow: 0 0 25px rgba(51, 199, 255, 0.8);
+}
+
+/* --- INTRO SECTION --- */
 .project-page .intro {
   height: auto; 
-  min-height: 50vh;
+  min-height: 40vh;
   text-align: center;
   place-items: center;
   display: grid;
-  margin-top: 6vh; 
-  margin-bottom: 15vh;
+  margin-top: 12vh; 
+  margin-bottom: 10vh;
+  padding: 0 5%;
 }
 
 .project-page .intro__title {
   place-items: center;
   margin: 0;
-  line-height: 1;
+  line-height: 1.2;
   display: grid;
-  margin-top: 5vh; 
 }
 
 .project-page .intro__title-pre {
@@ -144,7 +277,7 @@
 .project-page .intro__info {
   max-width: 25ch;
   opacity: .7;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   padding-bottom: 1rem;
   line-height: 1.4;
   position: relative;
@@ -246,8 +379,8 @@
   }
 
   .project-page .content__img {
-    max-width: 35vw; 
-    max-height: 60vh;
+    max-width: 38vw; 
+    max-height: 55vh;
   }
 
   .project-page .content--layout-odd {
@@ -284,13 +417,86 @@
     justify-content: flex-start;
   }
 }
+/* =========================================
+   MOBILE & TABLET RESPONSIVE STYLING (< 53em / 848px)
+========================================= */
+@media screen and (max-width: 52.9375em) {
+  .desktop-only { display: none !important; }
+  .custom-menu-btn { display: flex !important; }
 
-/* Responsive Navbar Mobile */
-@media screen and (max-width: 767px) {
   .portfolio-nav {
     padding: 1.5rem 5%;
   }
-  .portfolio-nav .nav-right {
+
+  /* 
+    PERBAIKAN KUNCI: Kita dorong seluruh bungkus <main> ke bawah.
+    Angka 150px sudah melewati tinggi navbar, sehingga dijamin tidak mepet.
+    Silakan perbesar angka 150px ini jika ingin jarak yang lebih jauh lagi.
+  */
+  main {
+    padding-top: 80px; 
+  }
+
+  .project-page .intro {
+    margin-top: 0; /* Reset margin yang sering bertabrakan (collapse) */
+    margin-bottom: 8vh;
+    min-height: auto;
+  }
+
+  .project-page .intro__title-pre {
+    font-size: 1.8rem;
+  }
+
+  .project-page .intro__title-sub {
+    font-size: 0.9rem;
+    padding: 0 1rem;
+  }
+
+  .project-page .intro__info {
+    font-size: 0.75rem;
+    max-width: 30ch;
+  }
+
+  .project-page .content-wrap {
+    margin-bottom: 12vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     gap: 1.5rem;
+    padding: 0 1.5rem;
+  }
+
+  .project-page .content {
+    padding: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .project-page .title-wrap {
+    gap: 0.35em;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .project-page .title {
+    font-size: 1.8rem;
+    text-align: center;
+  }
+
+  .project-page .content__img {
+    max-width: 100%;
+    height: auto;
+    max-height: 38vh;
+    object-fit: contain;
+  }
+
+  .project-page .content__text {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    text-align: center;
+    max-width: 100%;
+    margin-top: 1rem;
   }
 }
