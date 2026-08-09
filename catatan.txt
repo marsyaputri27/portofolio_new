@@ -1,0 +1,1 @@
+pertama harus build dulu abistu baru push git baru redeploy

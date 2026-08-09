@@ -122,7 +122,10 @@ function App() {
   }, []);
 
   useEffect(() => {
-    const lenis = new Lenis();
+    const lenis = new Lenis({
+      smoothWheel: true,
+      syncTouch: true, // Tambahkan ini agar scroll HP ikut terbaca dengan mulus
+    });
     lenis.on("scroll", ScrollTrigger.update);
     gsap.ticker.add((time) => lenis.raf(time * 1000));
     gsap.ticker.lagSmoothing(0);

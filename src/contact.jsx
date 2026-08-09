@@ -42,7 +42,7 @@ const Contact = () => {
       { opacity: 1, y: 0, duration: 0.9, stagger: 0.1, ease: 'power3.out', delay: 0.3 }
     );
 
-    const lenis = new Lenis({ lerp: 0.1, smoothWheel: true });
+    const lenis = new Lenis({ lerp: 0.1, smoothWheel: true, syncTouch: true });
     lenis.on('scroll', ScrollTrigger.update);
     gsap.ticker.add(time => { lenis.raf(time * 1000); });
     gsap.ticker.lagSmoothing(0);
