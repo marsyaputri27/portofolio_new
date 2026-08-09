@@ -229,6 +229,19 @@
 }
 
 /* =========================================
+   STYLING LOADER (RESPONSIF AGAR TIDAK KEPOTONG)
+========================================= */
+.willem__h1 {
+  white-space: nowrap;
+  justify-content: center;
+  font-size: clamp(3rem, 12vw, 12.5em); /* Dinamis otomatis menyesuaikan layar kecil seperti iPhone SE */
+  font-weight: 500;
+  line-height: .75;
+  display: flex;
+  position: relative;
+}
+
+/* =========================================
    STYLING DESKTOP DEFAULT
 ========================================= */
 .header-row { display: flex; align-items: center; }
